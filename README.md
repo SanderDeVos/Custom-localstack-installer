@@ -1,4 +1,4 @@
-# Custom-localstack-installer
+# Custom-localstack-installer(MAC Only)
 This repository contains a script which will install a local stack to your needs. You can even choose how to call your document root folder(and create it for you). It will also edit some basic but helpfull files (mostly created for local drupal development) such as PHP memory limit etc. 
 
 The script will also copy a 'home' folder to the document root which will contain a new look for the localhost page. This folder also contains a script 'auto_vhosts.command' which will edit the hosts and httpd-vhosts files according to the sites inside the documentroot(they make sure you can access the local website) and will link the 'home' page to the localhost. This page will give you all the current local sites(folders in documentroot) and has the ability to connect to a GitLab repository. This will show all the available projects for you and will make a list of them. With this list you have the option to select a repository and clone the project. 
