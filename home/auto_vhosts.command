@@ -5,7 +5,8 @@
 # Last Updated: 22/2/2016
 # ****************************************************
 
-docroot="/Users/$USER/Wbase"
+read -p "What is your document root folder called? "  name
+docroot="/Users/$USER/$name"
 
 #Delete dummy vhosts
 linenumber=$(awk '/dummy/{ print NR; exit }' /etc/apache2/extra/httpd-vhosts.conf)
@@ -17,23 +18,23 @@ fi
 
 
 #delete section to rewrite.
-sudo sed -i -e '/Wbase Local Stack Installer BEGIN/,/Wbase Local Stack Installer END/ d' /etc/hosts
+sudo sed -i -e '/Local Stack Installer BEGIN/,/Local Stack Installer END/ d' /etc/hosts
 
 #delete section to rewrite.
-sudo sed -i -e '/Wbase Local Stack Installer BEGIN/,/Wbase Local Stack Installer END/ d' /etc/apache2/extra/httpd-vhosts.conf
+sudo sed -i -e '/Local Stack Installer BEGIN/,/Local Stack Installer END/ d' /etc/apache2/extra/httpd-vhosts.conf
 
-vhosts="#*****Wbase Local Stack Installer BEGIN*****
+vhosts="#*****Local Stack Installer BEGIN*****
 
 <VirtualHost *:80>
 ServerName localhost
-DocumentRoot \"/Users/$USER/Wbase/home\"
+DocumentRoot \"/Users/$USER/$name/home\"
 ErrorLog \"/private/var/log/apache2/home.localhost-error_log\"
 CustomLog \"/private/var/log/apache2/home.localhost-access_log\" common
 </VirtualHost>
 
 "
 
-hosts="#*****Wbase Local Stack Installer BEGIN*****
+hosts="#*****Local Stack Installer BEGIN*****
 
 "
 
@@ -44,7 +45,7 @@ for d in $docroot/* ; do
 		if [ "$naam" != "home" ] && [ "$naam" != "sqldumps" ]; then
     		vhosts+="<VirtualHost *:80>
 ServerName $naam.localhost
-DocumentRoot \"/Users/$USER/Wbase/$naam\"
+DocumentRoot \"/Users/$USER/$name/$naam\"
 ErrorLog \"/private/var/log/apache2/$naam.localhost-error_log\"
 CustomLog \"/private/var/log/apache2/$naam.localhost-access_log\" common
 </VirtualHost>
@@ -58,8 +59,8 @@ CustomLog \"/private/var/log/apache2/$naam.localhost-access_log\" common
     fi
 done
 
-vhosts+="#*****Wbase Local Stack Installer END*****"
-hosts+="#*****Wbase Local Stack Installer END*****"
+vhosts+="#*****Local Stack Installer END*****"
+hosts+="#*****Local Stack Installer END*****"
 #rewrite section
 sudo sh -c "echo \"$hosts\" >> /etc/hosts"
 
