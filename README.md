@@ -30,4 +30,4 @@ Contributions and requests are welcome.
 
 Sponsor:
 
-![alt text](http://wbase.be "Wbase.be")
+![alt text](http://wbase.be/sites/all/themes/wb_responsive/logo.png "Wbase.be")
