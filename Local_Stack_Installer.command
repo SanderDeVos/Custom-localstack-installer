@@ -6,6 +6,7 @@
 # ****************************************************
 
 read -p "What do you want your document root to be called? "  name
+mkdir /Users/$USER/$name
 
 mydir=$( cd $(dirname $0) ; pwd -P )
 
